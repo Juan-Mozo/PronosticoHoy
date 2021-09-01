@@ -6,4 +6,5 @@
     <string name="enviarBoton">Ingresar</string>
     <!--MainActivity.kt-->
     <string name="mensajeErrorCP">Ingrese un código postal válido</string>
+    <string name="itemPronostico_seleccionado_formato">Pronostico: %1$.1f° %2$s</string>
 </resources>
