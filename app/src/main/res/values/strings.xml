@@ -1,3 +1,9 @@
 <resources>
+    <!--General-->
     <string name="app_name">Pronostico</string>
+    <!--Activity_main.xml-->
+    <string name="codigoPostalTextView">Ingrese su código postal</string>
+    <string name="enviarBoton">Ingresar</string>
+    <!--MainActivity.kt-->
+    <string name="mensajeErrorCP">Ingrese un código postal válido</string>
 </resources>
