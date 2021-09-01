@@ -1,5 +1,6 @@
 package com.juanimozo.pronostico
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.juanimozo.pronostico.detalles.DetallePronosticoActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,9 +36,8 @@ class MainActivity : AppCompatActivity() {
         val listaPronostico: RecyclerView = findViewById(R.id.listaPronostico)
         listaPronostico.layoutManager = LinearLayoutManager(this)
             // Adaptador al RecyclerView
-        val pronosticoDiarioAdaptador = PronosticoDiarioAdaptador() {  itemPronostico ->
-            val msg = getString(R.string.itemPronostico_seleccionado_formato, itemPronostico.temperatura, itemPronostico.descripcion)
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        val pronosticoDiarioAdaptador = PronosticoDiarioAdaptador() {  pronostico ->
+            mostrarDetallesPronostico(pronostico)
         }
         listaPronostico.adapter = pronosticoDiarioAdaptador
 
@@ -48,5 +49,13 @@ class MainActivity : AppCompatActivity() {
 
         pronosticoRepositorio.pronosticoSemanal.observe(this, pronosticoSemanalObserver)
 
+    }
+
+    // Llamar actividad detalles y pasar la data
+    private fun mostrarDetallesPronostico(pronostico: PronosticoDiario) {
+        val detallePronosticoIntent = Intent(this, DetallePronosticoActivity::class.java)
+        detallePronosticoIntent.putExtra("key_temp", pronostico.temperatura)
+        detallePronosticoIntent.putExtra("key_descripcion", pronostico.descripcion)
+        startActivity(detallePronosticoIntent)
     }
 }

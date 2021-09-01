@@ -14,11 +14,24 @@ class PronosticoRepositorio {
 
     // Crea una lista de 7 valores random para simular el pronostico
     fun cargarPronostico(codigoPostal: String) {
-        val valoresRandom = List(7) { Random.nextFloat().rem(30) * 30 }
+        val valoresRandom = List(7) { Random.nextFloat().rem(40) * 40 }
         val itemsPronostico = valoresRandom.map { temp ->
-            PronosticoDiario(temp, "Soleado")
+            PronosticoDiario(temp, obtenerDescripcion(temp))
         }
         // Envia el valor al MutableLiveData
         _pronosticoSemanal.setValue(itemsPronostico)
     }
+
+    // Generador de descripción según la temperatura
+    private fun obtenerDescripcion(temp: Float) : String {
+        return when (temp) {
+            in Float.MIN_VALUE.rangeTo(0f) -> "No debería existir"
+            in 0f.rangeTo(10f) -> "Frío"
+            in 10f.rangeTo(20f) -> "Templado"
+            in 20f.rangeTo(30f) -> "Calor"
+            in 30f.rangeTo(Float.MAX_VALUE) -> "Ola de Calor"
+            else -> "Error"
+        }
+    }
+
 }

@@ -16,7 +16,7 @@ class PronosticoDiarioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     // Conecta individualmente cada item con las view de arriba
     fun bind(pronosticoDiario: PronosticoDiario) {
-        temperaturaText.text = String.format("%.1f°", pronosticoDiario.temperatura)
+        temperaturaText.text = formatoTemperatura(pronosticoDiario.temperatura)
         descripcionText.text = pronosticoDiario.descripcion
     }
 }
