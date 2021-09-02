@@ -3,6 +3,7 @@
     android:height="512dp"
     android:viewportWidth="64"
     android:viewportHeight="64">
+  <!--Icon made by -->
   <path
       android:pathData="m29,55 l-3.927,1.571a1.707,1.707 0,0 0,-1.073 1.585v0.137a1.707,1.707 0,0 0,0.5 1.207,1.707 1.707,0 0,0 1.207,0.5h0.137a1.707,1.707 0,0 0,1.585 -1.073z"
       android:fillColor="#c4e2ff"/>

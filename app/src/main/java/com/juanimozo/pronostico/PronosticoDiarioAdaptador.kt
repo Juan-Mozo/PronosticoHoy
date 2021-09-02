@@ -9,19 +9,24 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 // ViewHolder
-class PronosticoDiarioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class PronosticoDiarioViewHolder(
+        view: View,
+        private val managerUnidadTemperatura: ManagerUnidadTemperatura
+        )
+    : RecyclerView.ViewHolder(view) {
     // view antes de findViewById porque el adaptador no tiene el contexto al no ser una activity
     private val temperaturaText = view.findViewById<TextView>(R.id.temperaturaText)
     private val descripcionText = view.findViewById<TextView>(R.id.descripcionText)
 
     // Conecta individualmente cada item con las view de arriba
     fun bind(pronosticoDiario: PronosticoDiario) {
-        temperaturaText.text = formatoTemperatura(pronosticoDiario.temperatura)
+        temperaturaText.text = formatoTemperatura(pronosticoDiario.temperatura, managerUnidadTemperatura.getConfiguracionTemperatura())
         descripcionText.text = pronosticoDiario.descripcion
     }
 }
 
 class PronosticoDiarioAdaptador(
+        private val managerUnidadTemperatura: ManagerUnidadTemperatura,
         private val clickHandler: (PronosticoDiario) -> Unit
 ) : ListAdapter<PronosticoDiario, PronosticoDiarioViewHolder>(DIFF_CONFIG) {
 
@@ -44,7 +49,7 @@ class PronosticoDiarioAdaptador(
     // Crea el nuevo ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PronosticoDiarioViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_pronostico_diario, parent, false)
-        return PronosticoDiarioViewHolder(itemView)
+        return PronosticoDiarioViewHolder(itemView, managerUnidadTemperatura)
     }
 
     // Agarra individualmente cada item y lo pasa como grupo al ViewHolder

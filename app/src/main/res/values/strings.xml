@@ -10,4 +10,6 @@
     <!--activity_detalle_pronostico.xml-->
     <string name="DetallePronostico">Detalle</string>
     <!--DetallePronosticoActivity.kt-->
+    <!--setting_menu-->
+    <string name="display_unidades">Unidades</string>
 </resources>

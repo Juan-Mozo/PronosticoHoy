@@ -2,5 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Item" />
+    <item
+        android:id="@+id/configuracionUnidades"
+        android:icon="@drawable/ic_tormenta"
+        android:title="@string/display_unidades" />
 </menu>
