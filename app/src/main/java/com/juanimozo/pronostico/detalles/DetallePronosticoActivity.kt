@@ -11,10 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.juanimozo.pronostico.ManagerUnidadTemperatura
-import com.juanimozo.pronostico.R
-import com.juanimozo.pronostico.UnidadTemperatura
-import com.juanimozo.pronostico.formatoTemperatura
+import com.juanimozo.pronostico.*
 
 class DetallePronosticoActivity : AppCompatActivity() {
 
@@ -54,27 +51,9 @@ class DetallePronosticoActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.configuracionUnidades -> {
-                mostrarUnidadesDialogo()
+                mostrarUnidadesDialogo(this, managerUnidadTemperatura)
                 return true
             } else -> super.onOptionsItemSelected(item)
         }
     }
-
-    // Mostrar el dialogo para seleccionar el tipo de unidades
-    private fun mostrarUnidadesDialogo() {
-        val dialogBuilder = AlertDialog.Builder(this)
-                .setTitle("Seleccionar el tipo de unidad")
-                .setMessage("Seleccionar que unidad de temperatura utilizar")
-                .setNegativeButton("C°") {_, _ ->
-                    managerUnidadTemperatura.updatePreferencias(UnidadTemperatura.Celsius)
-                }
-                .setPositiveButton("F°") {_, _ ->
-                    managerUnidadTemperatura.updatePreferencias(UnidadTemperatura.Fahreinheit)
-                }
-                .setOnDismissListener {
-                    Toast.makeText(this, "Los cambios se aplicarán al reiniciar la app", Toast.LENGTH_SHORT).show()
-                }
-                .show()
-    }
-
 }

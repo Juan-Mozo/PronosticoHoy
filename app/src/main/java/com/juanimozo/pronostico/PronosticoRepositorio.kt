@@ -14,7 +14,7 @@ class PronosticoRepositorio {
 
     // Crea una lista de 7 valores random para simular el pronostico
     fun cargarPronostico(codigoPostal: String) {
-        val valoresRandom = List(7) { Random.nextFloat().rem(40) * 40 }
+        val valoresRandom = List(10) { Random.nextFloat().rem(40) * 40 }
         val itemsPronostico = valoresRandom.map { temp ->
             PronosticoDiario(temp, obtenerDescripcion(temp))
         }

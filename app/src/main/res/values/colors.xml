@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="prussian">#2F495E</color>
-    <color name="celestePastel">#E1EDEC</color>
+    <!--Paleta-->
+    <color name="crema">#E8DED2</color>
+    <color name="celestePastel">#A3D2CA</color>
+    <color name="celeste">#5EAAA8</color>
 </resources>
