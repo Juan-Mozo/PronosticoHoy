@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.juanimozo.pronostico.*
 import com.juanimozo.pronostico.detalles.DetallePronosticoFragment
 
-class PronosticoActualFragment : Fragment() {
+class PronosticoSemanalFragment : Fragment() {
     private val pronosticoRepositorio = PronosticoRepositorio()
     // Traer el manager para poder pasarle al adaptador la temperatura configurada
     private lateinit var managerUnidadTemperatura: ManagerUnidadTemperatura
@@ -35,7 +35,7 @@ class PronosticoActualFragment : Fragment() {
         val codigoPostal = requireArguments().getString(KEY_CODIGOPOSTAL) ?: ""
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_pronostico_actual, container, false)
+        val view = inflater.inflate(R.layout.fragment_pronostico_semanal, container, false)
 
         // Boton volver a home
         val ubicacionEntradaBoton : FloatingActionButton = view.findViewById(R.id.ubicacionEntradaBoton)
@@ -74,8 +74,8 @@ class PronosticoActualFragment : Fragment() {
         const val KEY_CODIGOPOSTAL = "key_codigopostal"
 
         // Pasarle el codigo postal a onCreate
-        fun nuevaInstancia(codigoPostal: String) : PronosticoActualFragment {
-            val fragment = PronosticoActualFragment()
+        fun nuevaInstancia(codigoPostal: String) : PronosticoSemanalFragment {
+            val fragment = PronosticoSemanalFragment()
 
             val args = Bundle()
             args.putString(KEY_CODIGOPOSTAL, codigoPostal)

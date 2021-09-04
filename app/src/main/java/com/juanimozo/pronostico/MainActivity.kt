@@ -5,8 +5,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toolbar
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.juanimozo.pronostico.pronostico.PronosticoActualFragment
+import com.juanimozo.pronostico.pronostico.PronosticoActualFragmentDirections
 import com.juanimozo.pronostico.ubicacion.UbicacionEntradaFragment
+import com.juanimozo.pronostico.ubicacion.UbicacionEntradaFragmentDirections
 
 class MainActivity : AppCompatActivity(), AppNavegador {
 
@@ -21,10 +28,10 @@ class MainActivity : AppCompatActivity(), AppNavegador {
 
         managerUnidadTemperatura = ManagerUnidadTemperatura(this)
 
-        supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragmentContainer, UbicacionEntradaFragment())
-                .commit()
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar).setTitle(R.string.app_name)
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
 
     }
 
@@ -45,16 +52,17 @@ class MainActivity : AppCompatActivity(), AppNavegador {
     }
 
     override fun navegarAPronosticoActual(codigoPostal: String) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, PronosticoActualFragment.nuevaInstancia(codigoPostal))
-            .commit()
+        val accion = UbicacionEntradaFragmentDirections.actionUbicacionEntradaFragmentToPronosticoActualFragment()
+        findNavController(R.id.nav_host_fragment).navigate(accion)
     }
 
     override fun navegarAUbicacionEntrada() {
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, UbicacionEntradaFragment())
-                .commit()
+//        val accion = PronosticoActualFragmentDirections.actionPronosticoActualFragmentToUbicacionEntradaFragment()
+//        findNavController(R.id.nav_host_fragment).navigate(accion)
+    }
+
+    override fun navegarADetallePronostico(pronostico: PronosticoDiario) {
+        val accion = PronosticoActualFragmentDirections.actionPronosticoActualFragmentToDetallePronosticoFragment(pronostico.temperatura, pronostico.descripcion)
+        findNavController(R.id.nav_host_fragment).navigate(accion)
     }
 }
