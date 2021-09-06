@@ -15,7 +15,7 @@ import com.juanimozo.pronostico.pronostico.PronosticoActualFragmentDirections
 import com.juanimozo.pronostico.ubicacion.UbicacionEntradaFragment
 import com.juanimozo.pronostico.ubicacion.UbicacionEntradaFragmentDirections
 
-class MainActivity : AppCompatActivity(), AppNavegador {
+class MainActivity : AppCompatActivity() {
 
     // Traer el manager para poder pasarle al adaptador la temperatura configurada
     private lateinit var managerUnidadTemperatura: ManagerUnidadTemperatura
@@ -49,20 +49,5 @@ class MainActivity : AppCompatActivity(), AppNavegador {
                 return true
             } else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun navegarAPronosticoActual(codigoPostal: String) {
-        val accion = UbicacionEntradaFragmentDirections.actionUbicacionEntradaFragmentToPronosticoActualFragment()
-        findNavController(R.id.nav_host_fragment).navigate(accion)
-    }
-
-    override fun navegarAUbicacionEntrada() {
-//        val accion = PronosticoActualFragmentDirections.actionPronosticoActualFragmentToUbicacionEntradaFragment()
-//        findNavController(R.id.nav_host_fragment).navigate(accion)
-    }
-
-    override fun navegarADetallePronostico(pronostico: PronosticoDiario) {
-        val accion = PronosticoActualFragmentDirections.actionPronosticoActualFragmentToDetallePronosticoFragment(pronostico.temperatura, pronostico.descripcion)
-        findNavController(R.id.nav_host_fragment).navigate(accion)
     }
 }

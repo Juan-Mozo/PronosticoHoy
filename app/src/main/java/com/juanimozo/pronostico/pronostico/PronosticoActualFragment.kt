@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,13 +19,6 @@ class PronosticoActualFragment : Fragment() {
     private val pronosticoRepositorio = PronosticoRepositorio()
     // Traer el manager para poder pasarle al adaptador la temperatura configurada
     private lateinit var managerUnidadTemperatura: ManagerUnidadTemperatura
-
-    private lateinit var appNavegador: AppNavegador
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        appNavegador = context as AppNavegador
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +34,7 @@ class PronosticoActualFragment : Fragment() {
         // Boton volver a home
         val ubicacionEntradaBoton : FloatingActionButton = view.findViewById(R.id.ubicacionEntradaBoton)
         ubicacionEntradaBoton.setOnClickListener {
-            appNavegador.navegarAUbicacionEntrada()
+            mostrarUbicacionEntrada()
         }
 
         // RecyclerView semanal
@@ -64,9 +58,16 @@ class PronosticoActualFragment : Fragment() {
         return view
     }
 
-    // Llamar actividad detalles y pasar la data
+    // Volver al fragment UbicacionEntrada
+    private fun mostrarUbicacionEntrada() {
+        val accion = PronosticoActualFragmentDirections.actionPronosticoActualFragmentToUbicacionEntradaFragment()
+        findNavController().navigate(accion)
+    }
+
+    // Llamar fragment detalles y pasar la data
     private fun mostrarDetallesPronostico(pronostico: PronosticoDiario) {
-        appNavegador.navegarADetallePronostico(pronostico)
+        val accion = PronosticoActualFragmentDirections.actionPronosticoActualFragmentToDetallePronosticoFragment(pronostico.temperatura, pronostico.descripcion)
+        findNavController().navigate(accion)
     }
 
     companion object {

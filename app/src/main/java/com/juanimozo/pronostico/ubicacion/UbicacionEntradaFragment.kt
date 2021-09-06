@@ -9,17 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.juanimozo.pronostico.AppNavegador
+import androidx.navigation.fragment.findNavController
 import com.juanimozo.pronostico.R
+import com.juanimozo.pronostico.pronostico.PronosticoSemanalFragmentDirections
 
 class UbicacionEntradaFragment : Fragment() {
-
-    private lateinit var appNavegador: AppNavegador
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        appNavegador = context as AppNavegador
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +30,8 @@ class UbicacionEntradaFragment : Fragment() {
             if (codigoPostal.length != 4) {
                 Toast.makeText(requireContext(), R.string.mensajeErrorCP, Toast.LENGTH_SHORT).show()
             } else {
-                appNavegador.navegarAPronosticoActual(codigoPostal)
+                val accion = UbicacionEntradaFragmentDirections.actionUbicacionEntradaFragmentToPronosticoActualFragment()
+                findNavController().navigate(accion)
             }
         }
 
