@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".pronostico.PronosticoActualFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaPronostico"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/celestePastel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ubicacionEntradaBoton"
@@ -30,5 +21,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96" />
+
+    <TextView
+        android:id="@+id/nombreUbicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Buenos Aires" />
+
+    <TextView
+        android:id="@+id/temperaturaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nombreUbicacion"
+        app:layout_constraintStart_toStartOf="@+id/nombreUbicacion"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUbicacion"
+        tools:text="21°" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

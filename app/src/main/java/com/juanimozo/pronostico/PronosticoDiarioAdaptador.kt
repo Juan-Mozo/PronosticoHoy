@@ -3,10 +3,17 @@ package com.juanimozo.pronostico
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.juanimozo.pronostico.api.PronosticoDiario
+import java.text.SimpleDateFormat
+import java.util.*
+
+// Formato fecha
+private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
 
 // ViewHolder
 class PronosticoDiarioViewHolder(
@@ -17,11 +24,14 @@ class PronosticoDiarioViewHolder(
     // view antes de findViewById porque el adaptador no tiene el contexto al no ser una activity
     private val temperaturaText = view.findViewById<TextView>(R.id.temperaturaText)
     private val descripcionText = view.findViewById<TextView>(R.id.descripcionText)
+    private val dateText = view.findViewById<TextView>(R.id.dateText)
+    private val pronosticoIcon = view.findViewById<ImageView>(R.id.pronosticoIcon)
 
     // Conecta individualmente cada item con las view de arriba
     fun bind(pronosticoDiario: PronosticoDiario) {
-        temperaturaText.text = formatoTemperatura(pronosticoDiario.temperatura, managerUnidadTemperatura.getConfiguracionTemperatura())
-        descripcionText.text = pronosticoDiario.descripcion
+        temperaturaText.text = formatoTemperatura(pronosticoDiario.temp.max, managerUnidadTemperatura.getConfiguracionTemperatura())
+        descripcionText.text = pronosticoDiario.weather[0].description
+        dateText.text = DATE_FORMAT.format(Date(pronosticoDiario.dt * 1000))
     }
 }
 
