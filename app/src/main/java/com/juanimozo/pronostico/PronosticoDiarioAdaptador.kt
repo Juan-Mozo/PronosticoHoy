@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 // Formato fecha
-private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
+private val DATE_FORMAT = SimpleDateFormat("dd-MM-yyyy")
 
 // ViewHolder
 class PronosticoDiarioViewHolder(
@@ -32,6 +32,21 @@ class PronosticoDiarioViewHolder(
         temperaturaText.text = formatoTemperatura(pronosticoDiario.temp.max, managerUnidadTemperatura.getConfiguracionTemperatura())
         descripcionText.text = pronosticoDiario.weather[0].description
         dateText.text = DATE_FORMAT.format(Date(pronosticoDiario.dt * 1000))
+        cambiarIcon(pronosticoDiario)
+    }
+
+    // Actualizar el icono según la descripción dada por la api
+    fun cambiarIcon(pronosticoDiario: PronosticoDiario) {
+        when(pronosticoDiario.weather[0].description) {
+            "lluvia ligera" -> pronosticoIcon.setImageResource(R.drawable.ic_lluvia_ligera)
+            "lluvia moderada" -> pronosticoIcon.setImageResource(R.drawable.ic_luvia)
+            "heavy intensity rain" -> pronosticoIcon.setImageResource(R.drawable.ic_luvia)
+            "cielo claro" -> pronosticoIcon.setImageResource(R.drawable.ic_soleado)
+            "nubes dispersas" -> pronosticoIcon.setImageResource(R.drawable.ic_ligeramente_nublado)
+            "few clouds" -> pronosticoIcon.setImageResource(R.drawable.ic_parc_nublado)
+            "muy nuboso" -> pronosticoIcon.setImageResource(R.drawable.ic_nublado)
+            else -> pronosticoIcon.setImageResource(R.drawable.ic_soleado)
+        }
     }
 }
 

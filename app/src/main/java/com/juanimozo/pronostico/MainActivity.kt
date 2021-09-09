@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
     // Traer el manager para poder pasarle al adaptador la temperatura configurada
     private lateinit var managerUnidadTemperatura: ManagerUnidadTemperatura
 
-    // #ToDo: 1 Buscar nombre autor iconos
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

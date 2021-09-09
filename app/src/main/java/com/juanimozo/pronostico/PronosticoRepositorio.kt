@@ -39,7 +39,8 @@ class PronosticoRepositorio {
                         lon = respuestaPronostico.coord.lon,
                         exclude = "current,minutely,hourly",
                         units = "metric",
-                        apiKey = BuildConfig.OPEN_WEATHER_MAP_API_KEY
+                        lang = "sp",
+                            apiKey = BuildConfig.OPEN_WEATHER_MAP_API_KEY
                     )
                     pronosticoCall.enqueue(object: Callback<ClimaSemanal> {
                         override fun onResponse(call: Call<ClimaSemanal>, response: Response<ClimaSemanal>) {

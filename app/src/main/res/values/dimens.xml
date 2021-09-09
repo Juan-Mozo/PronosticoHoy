@@ -2,4 +2,5 @@
 <resources>
     <dimen name="altura_titulo">18sp</dimen>
     <dimen name="pronostico_iconos">40dp</dimen>
+    <!--ToDo 6 Pasar todos las dimensiones a dimen-->
 </resources>

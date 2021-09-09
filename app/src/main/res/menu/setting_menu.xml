@@ -4,6 +4,5 @@
 
     <item
         android:id="@+id/configuracionUnidades"
-        android:icon="@drawable/ic_tormenta"
         android:title="@string/display_unidades" />
 </menu>

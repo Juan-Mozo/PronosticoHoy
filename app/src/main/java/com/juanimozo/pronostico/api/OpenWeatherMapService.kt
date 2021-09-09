@@ -6,6 +6,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+// ToDo 3 cambiar lenguaje a español y país a argentina
 fun crearOpenWeatherMapService(): OpenWeatherMapService {
     val retrofit = Retrofit.Builder()
         .baseUrl("http://api.openweathermap.org")
@@ -31,6 +32,7 @@ interface OpenWeatherMapService {
             @Query("lon") lon: Float,
             @Query("exclude") exclude: String,
             @Query("units") units: String,
+            @Query("lang") lang: String,
             @Query("appid") apiKey: String
     ): Call<ClimaSemanal>
 }
