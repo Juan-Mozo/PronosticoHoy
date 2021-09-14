@@ -43,7 +43,8 @@ class PronosticoDiarioViewHolder(
             "heavy intensity rain" -> pronosticoIcon.setImageResource(R.drawable.ic_luvia)
             "cielo claro" -> pronosticoIcon.setImageResource(R.drawable.ic_soleado)
             "nubes dispersas" -> pronosticoIcon.setImageResource(R.drawable.ic_ligeramente_nublado)
-            "few clouds" -> pronosticoIcon.setImageResource(R.drawable.ic_parc_nublado)
+            "algo de nubes" -> pronosticoIcon.setImageResource(R.drawable.ic_ligeramente_nublado)
+            "nubes" -> pronosticoIcon.setImageResource(R.drawable.ic_parc_nublado)
             "muy nuboso" -> pronosticoIcon.setImageResource(R.drawable.ic_nublado)
             else -> pronosticoIcon.setImageResource(R.drawable.ic_soleado)
         }

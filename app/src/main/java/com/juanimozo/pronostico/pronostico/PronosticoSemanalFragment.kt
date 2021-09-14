@@ -1,10 +1,10 @@
 package com.juanimozo.pronostico.pronostico
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,10 +26,10 @@ class PronosticoSemanalFragment : Fragment() {
     ): View? {
         managerUnidadTemperatura = ManagerUnidadTemperatura(requireContext())
 
-        val codigoPostal = arguments?.getString(KEY_CODIGOPOSTAL)
-
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_pronostico_semanal, container, false)
+        val mensajeText: TextView = view.findViewById(R.id.mensajeText)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
         // Boton volver a home
         val ubicacionEntradaBoton : FloatingActionButton = view.findViewById(R.id.ubicacionEntradaBoton)
@@ -48,6 +48,8 @@ class PronosticoSemanalFragment : Fragment() {
 
         // Observador que actualiza la UI
         val pronosticoSemanalObserver = Observer<ClimaSemanal> { climaSemanal ->
+            listaPronostico.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
             // actualiza el adaptador de la lista
             pronosticoDiarioAdaptador.submitList(climaSemanal.daily)
         }
@@ -56,7 +58,11 @@ class PronosticoSemanalFragment : Fragment() {
         ubicacionRepositorio = UbicacionRepositorio(requireContext())
         val ubicacionGuardadaObserver = Observer<Ubicacion> { ubicacionGuardada ->
             when (ubicacionGuardada) {
-                is Ubicacion.CodigoPostal -> pronosticoRepositorio.cargarPronosticoSemanal(ubicacionGuardada.codigoPostal)
+                is Ubicacion.CodigoPostal -> {
+                    progressBar.visibility = View.VISIBLE
+                    mensajeText.visibility = View.GONE
+                    pronosticoRepositorio.cargarPronosticoSemanal(ubicacionGuardada.codigoPostal)
+                }
             }
         }
             ubicacionRepositorio.ubicacionGuardada.observe(viewLifecycleOwner, ubicacionGuardadaObserver)
@@ -73,7 +79,8 @@ class PronosticoSemanalFragment : Fragment() {
     private fun mostrarDetallesPronostico(pronostico: PronosticoDiario) {
         val temperatura = pronostico.temp.max
         val descripcion = pronostico.weather[0].description
-        val accion = PronosticoSemanalFragmentDirections.actionPronosticoSemanalFragmentToDetallePronosticoFragment(temperatura, descripcion)
+        val fecha = pronostico.dt
+        val accion = PronosticoSemanalFragmentDirections.actionPronosticoSemanalFragmentToDetallePronosticoFragment(temperatura, descripcion, fecha)
         findNavController().navigate(accion)
     }
 

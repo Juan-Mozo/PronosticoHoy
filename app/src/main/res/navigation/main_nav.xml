@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/ubicacionEntradaFragment"
         android:name="com.juanimozo.pronostico.ubicacion.UbicacionEntradaFragment"
-        android:label="@string/app_name"
+        android:label="@string/Ubicacion"
         tools:layout="@layout/fragment_ubicacion_entrada">
         <action
             android:id="@+id/action_ubicacionEntradaFragment_to_pronosticoActualFragment"
@@ -17,22 +17,23 @@
     <fragment
         android:id="@+id/pronosticoActualFragment"
         android:name="com.juanimozo.pronostico.pronostico.PronosticoActualFragment"
-        android:label="@string/app_name"
+        android:label="@string/PronosticoActual"
         tools:layout="@layout/fragment_pronostico_actual">
         <action
-            android:id="@+id/action_pronosticoActualFragment_to_detallePronosticoFragment"
-            app:destination="@id/detallePronosticoFragment" />
-        <action
             android:id="@+id/action_pronosticoActualFragment_to_ubicacionEntradaFragment"
-            app:destination="@id/ubicacionEntradaFragment" />
+            app:destination="@id/ubicacionEntradaFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_pronosticoActualFragment_to_pronosticoSemanalFragment"
-            app:destination="@id/pronosticoSemanalFragment" />
+            app:destination="@id/pronosticoSemanalFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/detallePronosticoFragment"
         android:name="com.juanimozo.pronostico.detalles.DetallePronosticoFragment"
-        android:label="@string/app_name"
+        android:label="@string/DetallePronostico"
         tools:layout="@layout/fragment_detalle_pronostico">
         <argument
             android:name="temperatura"
@@ -40,16 +41,23 @@
         <argument
             android:name="descripcion"
             app:argType="string" />
+        <argument
+            android:name="fecha"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/pronosticoSemanalFragment"
         android:name="com.juanimozo.pronostico.pronostico.PronosticoSemanalFragment"
-        android:label="PronosticoSemanalFragment">
+        android:label="@string/PronosticoSemanal">
         <action
             android:id="@+id/action_pronosticoSemanalFragment_to_detallePronosticoFragment"
-            app:destination="@id/detallePronosticoFragment" />
+            app:destination="@id/detallePronosticoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_pronosticoSemanalFragment_to_ubicacionEntradaFragment"
-            app:destination="@id/ubicacionEntradaFragment" />
+            app:destination="@id/ubicacionEntradaFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/slide_in_left" />
     </fragment>
 </navigation>

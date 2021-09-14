@@ -28,11 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Buenos Aires" />
+        tools:text="Buenos Aires"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/temperaturaText"
@@ -40,9 +42,37 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/nombreUbicacion"
         app:layout_constraintStart_toStartOf="@+id/nombreUbicacion"
         app:layout_constraintTop_toBottomOf="@+id/nombreUbicacion"
-        tools:text="21°" />
+        tools:text="21°"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/mensajeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FaltaCP"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-// ToDo 3 cambiar lenguaje a español y país a argentina
+// ToDo :: Para version 1.1 :: Cambiar tipo de @Get en pronosticoActual
 fun crearOpenWeatherMapService(): OpenWeatherMapService {
     val retrofit = Retrofit.Builder()
         .baseUrl("http://api.openweathermap.org")

@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         managerUnidadTemperatura = ManagerUnidadTemperatura(this)
 
+        // Configurar la Toolbar y la BottomNavigationBar
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar).setTitle(R.string.app_name)
+        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
 
     }

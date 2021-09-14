@@ -13,4 +13,10 @@
     <!--setting_menu-->
     <string name="display_unidades">Unidades</string>
     <!--ToDo 5 Pasar todos los textos a strings-->
+    <!--Fragment Actual y Semanal-->
+    <string name="FaltaCP">Por favor ingresar un código postal</string>
+    <!--main_nav-->
+    <string name="Ubicacion">Ubicacion</string>
+    <string name="PronosticoActual">Pronostico Actual</string>
+    <string name="PronosticoSemanal">Pronostico Semanal</string>
 </resources>
