@@ -58,10 +58,10 @@ class PronosticoSemanalFragment : Fragment() {
         ubicacionRepositorio = UbicacionRepositorio(requireContext())
         val ubicacionGuardadaObserver = Observer<Ubicacion> { ubicacionGuardada ->
             when (ubicacionGuardada) {
-                is Ubicacion.CodigoPostal -> {
+                is Ubicacion.Ciudad -> {
                     progressBar.visibility = View.VISIBLE
                     mensajeText.visibility = View.GONE
-                    pronosticoRepositorio.cargarPronosticoSemanal(ubicacionGuardada.codigoPostal)
+                    pronosticoRepositorio.cargarPronosticoSemanal(ubicacionGuardada.ciudad)
                 }
             }
         }

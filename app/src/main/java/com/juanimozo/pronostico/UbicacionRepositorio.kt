@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 sealed class Ubicacion {
-    data class CodigoPostal(val codigoPostal: String) : Ubicacion()
+    data class Ciudad(val ciudad: String) : Ubicacion()
 }
 
 // Crear la llave como constante para evitar errores
-private const val KEY_CODIGOPOSTAL = "key_codigopostal"
+private const val KEY_CIUDAD = "key_ciudad"
 
 // Usar SharedPreferences para almacenar el codigo postal en el repositorio
 class UbicacionRepositorio(context: Context) {
@@ -25,7 +25,7 @@ class UbicacionRepositorio(context: Context) {
         // Listener para el sharedPreferences
         preferencias.registerOnSharedPreferenceChangeListener { sharedPreferences, key ->
             // Si la llave no es igual va a ignorarlo
-            if(key != KEY_CODIGOPOSTAL) return@registerOnSharedPreferenceChangeListener
+            if(key != KEY_CIUDAD) return@registerOnSharedPreferenceChangeListener
             transmisionCPGuardado()
         }
 
@@ -35,16 +35,16 @@ class UbicacionRepositorio(context: Context) {
     fun guardarUbicacion(ubicacion: Ubicacion) {
         when (ubicacion) {
             // Modificar SharedPreferences con el codigo postal ingresado
-            is Ubicacion.CodigoPostal -> preferencias.edit().putString(KEY_CODIGOPOSTAL, ubicacion.codigoPostal).apply()
+            is Ubicacion.Ciudad -> preferencias.edit().putString(KEY_CIUDAD, ubicacion.ciudad).apply()
         }
     }
 
     private fun transmisionCPGuardado() {
         // Si la llave es igual va a devolver el codigo postal actual
-        val codigoPostal = preferencias.getString(KEY_CODIGOPOSTAL, "")
+        val ciudad = preferencias.getString(KEY_CIUDAD, "")
         // Si hay data guardada la va a mandar a los observadores
-        if(codigoPostal != null && codigoPostal.isNotBlank()) {
-            _ubicacionGuardada.value = Ubicacion.CodigoPostal(codigoPostal)
+        if(ciudad != null && ciudad.isNotBlank()) {
+            _ubicacionGuardada.value = Ubicacion.Ciudad(ciudad)
         }
     }
 }

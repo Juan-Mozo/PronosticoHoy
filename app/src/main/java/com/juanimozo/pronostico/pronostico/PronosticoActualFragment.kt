@@ -29,6 +29,13 @@ class PronosticoActualFragment : Fragment() {
         val nombreUbicacion: TextView = view.findViewById(R.id.nombreUbicacion)
         val temperaturaText: TextView = view.findViewById(R.id.temperaturaText)
         val mensajeText: TextView = view.findViewById(R.id.mensajeText)
+        val presionText: TextView = view.findViewById(R.id.presionText)
+        val presionDesc: TextView = view.findViewById(R.id.presionDesc)
+        val humedadText: TextView = view.findViewById(R.id.humedadText)
+        val humedadDesc: TextView = view.findViewById(R.id.humedadDesc)
+        val paisText: TextView = view.findViewById(R.id.paisText)
+        val diaText: TextView = view.findViewById(R.id.diaText)
+        val diaDesc: TextView = view.findViewById(R.id.diaDesc)
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
         // Boton volver a home
@@ -43,8 +50,21 @@ class PronosticoActualFragment : Fragment() {
             progressBar.visibility = View.GONE
             temperaturaText.visibility = View.VISIBLE
             nombreUbicacion.visibility = View.VISIBLE
+            presionText.visibility = View.VISIBLE
+            presionDesc.visibility = View.VISIBLE
+            humedadText.visibility = View.VISIBLE
+            humedadDesc.visibility = View.VISIBLE
+            paisText.visibility = View.VISIBLE
+//            diaText.visibility = View.VISIBLE
+//            diaDesc.visibility = View.VISIBLE
+
             nombreUbicacion.text = clima.name
             temperaturaText.text = formatoTemperatura(clima.main.temp, managerUnidadTemperatura.getConfiguracionTemperatura())
+            paisText.text = clima.sys.country
+            presionText.text = clima.main.pressure.toString() + " hPa"
+            humedadText.text = clima.main.humidity.toString() + "%"
+//            diaText.text = clima.weather.main
+//            diaDesc.text = clima.weather.description
         }
         pronosticoRepositorio.climaActual.observe(viewLifecycleOwner, climaActualObserver)
 
@@ -52,10 +72,10 @@ class PronosticoActualFragment : Fragment() {
         ubicacionRepositorio = UbicacionRepositorio(requireContext())
         val ubicacionGuardadaObserver = Observer<Ubicacion> { ubicacionGuardada ->
             when(ubicacionGuardada) {
-                is Ubicacion.CodigoPostal -> {
+                is Ubicacion.Ciudad -> {
                     progressBar.visibility = View.VISIBLE
                     mensajeText.visibility = View.GONE
-                    pronosticoRepositorio.cargarPronosticoActual(ubicacionGuardada.codigoPostal)
+                    pronosticoRepositorio.cargarPronosticoActual(ubicacionGuardada.ciudad)
                 }
             }
         }

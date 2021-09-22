@@ -23,9 +23,9 @@ class PronosticoRepositorio {
     // Permite que la activity lea los cambios pero no puede modificar la data al ser Live data y no MutablLiveData
     val pronosticoSemanal: LiveData<ClimaSemanal> = _climaSemanal
 
-    fun cargarPronosticoSemanal(codigoPostal: String) {
+    fun cargarPronosticoSemanal(ciudad: String) {
         // Llamar pronosticoActual para conseguir las coordenadas según el codigoPostal
-        val call = crearOpenWeatherMapService().pronosticoActual(codigoPostal, "metric", BuildConfig.OPEN_WEATHER_MAP_API_KEY)
+        val call = crearOpenWeatherMapService().pronosticoActual(ciudad, "metric", BuildConfig.OPEN_WEATHER_MAP_API_KEY, "sp")
         call.enqueue(object : Callback<ClimaActual> {
             override fun onResponse(
                     call: Call<ClimaActual>,
@@ -66,8 +66,8 @@ class PronosticoRepositorio {
         })
     }
 
-    fun cargarPronosticoActual(codigoPostal: String) {
-        val call = crearOpenWeatherMapService().pronosticoActual(codigoPostal, "metric", BuildConfig.OPEN_WEATHER_MAP_API_KEY)
+    fun cargarPronosticoActual(ciudad: String) {
+        val call = crearOpenWeatherMapService().pronosticoActual(ciudad, "metric", BuildConfig.OPEN_WEATHER_MAP_API_KEY, "sp")
         call.enqueue(object : Callback<ClimaActual> {
             override fun onResponse(
                     call: Call<ClimaActual>,

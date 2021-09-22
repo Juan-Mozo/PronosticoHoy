@@ -21,9 +21,11 @@ fun crearOpenWeatherMapService(): OpenWeatherMapService {
 interface OpenWeatherMapService {
     @GET("/data/2.5/weather")
     fun pronosticoActual(
-        @Query("zip") codigoPostal: String,
-        @Query("units") unidad: String,
-        @Query("appid") apiKey: String
+        // @Query("zip") codigoPostal: String,
+            @Query("q") ciudad: String,
+            @Query("units") unidad: String,
+            @Query("appid") apiKey: String,
+            @Query("lang") lang: String
     ): Call<ClimaActual>
 
     @GET("/data/2.5/onecall")

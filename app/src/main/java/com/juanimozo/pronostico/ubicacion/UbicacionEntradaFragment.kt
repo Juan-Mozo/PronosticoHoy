@@ -28,16 +28,16 @@ class UbicacionEntradaFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_ubicacion_entrada, container, false)
 
-        val codigoPostalEditText: EditText = view.findViewById(R.id.codigoPostalEditText)
+        val ciudadEditText: EditText = view.findViewById(R.id.ciudadEditText)
         val enviarButton: Button = view.findViewById(R.id.enviarButton)
 
         enviarButton.setOnClickListener {
-            val codigoPostal: String = codigoPostalEditText.text.toString()
+            val ciudad: String = ciudadEditText.text.toString()
             // Chequear si el código postal tiene los caracteres necesarios
-            if (codigoPostal.length != 5) {
+            if (ciudad == null) {
                 Toast.makeText(requireContext(), R.string.mensajeErrorCP, Toast.LENGTH_SHORT).show()
             } else {
-                ubicacionRepositorio.guardarUbicacion(Ubicacion.CodigoPostal(codigoPostal))
+                ubicacionRepositorio.guardarUbicacion(Ubicacion.Ciudad(ciudad))
                 val accion = UbicacionEntradaFragmentDirections.actionUbicacionEntradaFragmentToPronosticoActualFragment()
                 findNavController().navigate(accion)
             }

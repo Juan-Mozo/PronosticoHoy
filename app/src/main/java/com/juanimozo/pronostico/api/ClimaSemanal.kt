@@ -4,8 +4,8 @@ import com.squareup.moshi.Json
 
 data class DescripcionClima(
         val main: String,
-        val description: String,
-        val icon: String)
+        val description: String
+        )
 
 data class Temp(
         val min: Float,

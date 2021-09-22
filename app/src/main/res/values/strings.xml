@@ -2,10 +2,10 @@
     <!--General-->
     <string name="app_name">Pronostico</string>
     <!--Activity_main.xml-->
-    <string name="codigoPostalTextView">Ingrese su código postal</string>
+    <string name="ciudadTextView">Buscar ciudad</string>
     <string name="enviarBoton">Ingresar</string>
     <!--MainActivity.kt-->
-    <string name="mensajeErrorCP">Ingrese un código postal válido</string>
+    <string name="mensajeErrorCP">Ingrese una ciudad válida</string>
     <string name="itemPronostico_seleccionado_formato">Pronostico: %1$.1f° %2$s</string>
     <!--fragment_detalle_pronostico.xml.xml-->
     <string name="DetallePronostico">Detalle</string>
@@ -14,7 +14,7 @@
     <string name="display_unidades">Unidades</string>
     <!--ToDo 5 Pasar todos los textos a strings-->
     <!--Fragment Actual y Semanal-->
-    <string name="FaltaCP">Por favor ingresar un código postal</string>
+    <string name="FaltaCiudad">Por favor ingresar una ciudad</string>
     <!--main_nav-->
     <string name="Ubicacion">Ubicacion</string>
     <string name="PronosticoActual">Pronostico Actual</string>
